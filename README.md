@@ -3,7 +3,7 @@ This repository contains a Python script for analyzing book data stored in a CSV
 
     Bar Chart of Genre Distribution: Visualizes the distribution of books across different genres.
     Pie Chart of Language Distribution: Displays the distribution of books based on their language.
-    Line Chart of Publication Trend: Illustrates the trend of book publications over the years.
+    Bar Chart of Publication Trend: Illustrates the amount of books published by century.
 
 You can visit the site @ https://epldatawebsite.alan.com.ar/
 
