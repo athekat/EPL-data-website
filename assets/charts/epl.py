@@ -4,31 +4,27 @@ from io import BytesIO
 import zipfile
 import os
 import plotly.graph_objects as go
-import roman
 
+def download_and_unzip(url, output_dir):
+    # Create the output directory if it doesn't exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-datoslibros = 'downloaded_files/epublibre.csv'
+    # Download the zip file
+    response = requests.get(url)
+    zip_file = zipfile.ZipFile(BytesIO(response.content))
 
-# def download_and_unzip(url, output_dir):
-#     # Create the output directory if it doesn't exist
-#     if not os.path.exists(output_dir):
-#         os.makedirs(output_dir)
+    # Extract the contents of the zip file
+    zip_file.extractall(output_dir)
 
-#     # Download the zip file
-#     response = requests.get(url)
-#     zip_file = zipfile.ZipFile(BytesIO(response.content))
+    # Get the list of extracted files
+    extracted_files = zip_file.namelist()
 
-#     # Extract the contents of the zip file
-#     zip_file.extractall(output_dir)
+    # Close the zip file
+    zip_file.close()
 
-#     # Get the list of extracted files
-#     extracted_files = zip_file.namelist()
-
-#     # Close the zip file
-#     zip_file.close()
-
-#     # Return the list of extracted files
-#     return extracted_files
+    # Return the list of extracted files
+    return extracted_files
 
 def publication_trend_line_chart(file_path):
     century_counts = {}
@@ -106,10 +102,10 @@ def language_distribution_pie_chart(file_path):
     #fig.show()
 
 # Example usage
-# download_url = 'https://rss.epublibre.org/csv'
-# output_directory = './downloaded_files'
-# extracted_files = download_and_unzip(download_url, output_directory)
-# csv_file_path = os.path.join(output_directory, extracted_files[0])
-publication_trend_line_chart(datoslibros)
-genre_distribution_bar_chart(datoslibros)
-language_distribution_pie_chart(datoslibros)
+download_url = 'https://rss.epublibre.org/csv'
+output_directory = './downloaded_files'
+extracted_files = download_and_unzip(download_url, output_directory)
+csv_file_path = os.path.join(output_directory, extracted_files[0])
+publication_trend_line_chart(csv_file_path)
+genre_distribution_bar_chart(csv_file_path)
+language_distribution_pie_chart(csv_file_path)
