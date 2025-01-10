@@ -16,6 +16,12 @@ jobs:
           python assets/charts/epl.py
       - name: Wait for 30 seconds
         run: sleep 30
+      - name: Move the HTML file
+        run: mv genero.html assets/charts/
+      - name: Move the HTML file
+        run: mv idiomas.html assets/charts/
+      - name: Move the HTML file
+        run: mv publicacion.html assets/charts/
       - name: Commit changes
         run: |
           git config --local user.name "github-actions"
