@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0/12 * * *"
+    - cron: "0 0/23 * * *"
 jobs:
   run-epl-script:
     runs-on: ubuntu-latest
